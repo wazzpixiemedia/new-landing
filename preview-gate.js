@@ -107,76 +107,83 @@ cityQuick.addEventListener('change', function() {
 
 
   // filter js
-  document.getElementById("apply").addEventListener("click", function () {
-    
-    const cityValue = document.getElementById("city").value;
-    const roomsValue = document.getElementById("rooms").value;
-    const maxPrice = document.getElementById("price").value;
-    const minArea = document.getElementById("area").value;
-  
-    const listings = document.querySelectorAll(".listing");
-    const listingGrid = document.getElementById("listingGrid");
-  
+ document.addEventListener("DOMContentLoaded", function () {
+
+  const applyBtn = document.getElementById("apply");
+  const listingGrid = document.getElementById("listingGrid");
+
+  // Stop if required elements are missing
+  if (!applyBtn || !listingGrid) return;
+
+  applyBtn.addEventListener("click", function () {
+
+    const cityValue = document.getElementById("city")?.value || "";
+    const roomsValue = document.getElementById("rooms")?.value || "";
+    const maxPrice = document.getElementById("price")?.value || "";
+    const minArea = document.getElementById("area")?.value || "";
+
+    const listings = listingGrid.querySelectorAll(".listing");
+
     let visibleCount = 0;
-  
-    listings.forEach(function (listing) {
-      
-      const listingCity = listing.getAttribute("data-city");
-      const listingRooms = listing.getAttribute("data-rooms");
-      const listingPrice = parseInt(listing.getAttribute("data-price"));
-      const listingArea = parseInt(listing.getAttribute("data-area"));
-  
+
+    listings.forEach((listing) => {
+
+      const listingCity = listing.dataset.city;
+      const listingRooms = listing.dataset.rooms;
+      const listingPrice = parseInt(listing.dataset.price || 0);
+      const listingArea = parseInt(listing.dataset.area || 0);
+
       let show = true;
-  
+
       // City filter
       if (cityValue && listingCity !== cityValue) {
         show = false;
       }
-  
+
       // Rooms filter
       if (roomsValue) {
         if (roomsValue === "4") {
-          if (parseInt(listingRooms) < 4) {
-            show = false;
-          }
+          if (parseInt(listingRooms) < 4) show = false;
         } else if (listingRooms !== roomsValue) {
           show = false;
         }
       }
-  
-      // Maximum price filter
+
+      // Max price
       if (maxPrice && listingPrice > parseInt(maxPrice)) {
         show = false;
       }
-  
-      // Minimum area filter
+
+      // Min area
       if (minArea && listingArea < parseInt(minArea)) {
         show = false;
       }
-  
-      // Show or hide listing
+
       listing.style.display = show ? "" : "none";
-  
+
       if (show) visibleCount++;
-  
     });
-  
-    // Remove existing "not found" message if it exists
+
+    // Remove old message safely
     const existingMessage = document.querySelector(".not-found");
     if (existingMessage) {
       existingMessage.remove();
     }
-  
-    // If no results found → add message
+
+    // Add message safely
     if (visibleCount === 0) {
       const message = document.createElement("h2");
-      message.classList.add("not-found");
+      message.className = "not-found";
       message.textContent = "No result found";
-      listingGrid.after(message);
+
+      // SAFETY FIX → check before inserting
+      if (listingGrid.parentNode) {
+        listingGrid.parentNode.insertBefore(message, listingGrid.nextSibling);
+      }
     }
-  
+
   });
 
-}, 2000);
+});
 
 
