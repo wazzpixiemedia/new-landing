@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Pages include: <meta name="robots" content="noindex,nofollow">
+Sitemap: https://www.argo-wohnen.de/sitemap.xml

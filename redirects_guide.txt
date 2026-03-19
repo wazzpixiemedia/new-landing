@@ -1,0 +1,26 @@
+# Redirect-Konzept (301) für bestehende Domains
+
+# Ziel:
+#  - argo-wohnen-leipzig.de   -> https://www.argo-wohnen.de/standorte/leipzig/
+#  - argo-wohnen-magdeburg.de -> https://www.argo-wohnen.de/standorte/magdeburg/
+#  - argo-wohnen-dresden.de   -> https://www.argo-wohnen.de/standorte/dresden/
+
+# Wichtig:
+#  - 301 (permanent) verwenden
+#  - Query-Strings (gclid/utm) beibehalten (Apache: QSA / Nginx: $args)
+#  - Optional: Datenschutz/Impressum sauber auf neue Seiten mappen
+
+## Apache / .htaccess (Beispiel: Leipzig-Domain)
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^(www\.)?argo-wohnen-leipzig\.de$ [NC]
+# RewriteRule ^datenschutz/?$ https://www.argo-wohnen.de/datenschutz/ [R=301,L,QSA]
+# RewriteRule ^impressum/?$ https://www.argo-wohnen.de/impressum/ [R=301,L,QSA]
+# RewriteRule ^(.*)$ https://www.argo-wohnen.de/standorte/leipzig/ [R=301,L,QSA]
+
+## Nginx (Beispiel: Leipzig-Domain)
+# server {
+#   server_name argo-wohnen-leipzig.de www.argo-wohnen-leipzig.de;
+#   location = /datenschutz { return 301 https://www.argo-wohnen.de/datenschutz/?$args; }
+#   location = /impressum   { return 301 https://www.argo-wohnen.de/impressum/?$args; }
+#   location / { return 301 https://www.argo-wohnen.de/standorte/leipzig/?$args; }
+# }
