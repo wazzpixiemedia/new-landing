@@ -21,7 +21,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     /* замените на Open Sans, wenn eingebunden */
     color: var(--dark);
-    background: var(--bg);
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     line-height: 1.6;
 }
 
@@ -813,7 +813,7 @@ footer a:hover {
 
 .districtSection {
     padding: 80px 0;
-    background: #FFFFFF;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     border-top: 1px solid var(--line);
 }
 
@@ -821,7 +821,7 @@ footer a:hover {
 /* Blog section */
 .blogSection {
     padding: 70px 0;
-    background: #FFFFFF;
+   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 .blogGrid {
@@ -1015,8 +1015,7 @@ footer a:hover {
 .heroImage {
     border-radius: 10px;
     overflow: hidden;
-    height: 520px;
-    background: #FFFFFF;
+    height: 520px;    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 .heroImage img {
@@ -1130,7 +1129,7 @@ h1 {
 
 .argomenteCard {
     border: 1px solid var(--line);
-    background: #FFFFFF;
+        background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     padding: 18px;
     border-radius: 10px;
 }
@@ -1181,7 +1180,7 @@ h1 {
 /* ARGOmente v2 */
 .argSection {
     padding: 86px 0;
-    background: #FFFFFF;
+        background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 .argHeader {
@@ -1219,7 +1218,7 @@ h1 {
 .argCard {
     border: 1px solid var(--line);
     border-radius: 10px;
-    background: #fff;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     padding: 18px;
 }
 
